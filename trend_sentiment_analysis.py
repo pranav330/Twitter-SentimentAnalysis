@@ -7,13 +7,9 @@ import json
 import sys
   
 class TwitterClient(object): 
-    ''' 
-    Generic Twitter Class for sentiment analysis. 
-    '''
+  
     def __init__(self): 
-        ''' 
-        Class constructor or initialization method. 
-        '''
+        
         # keys and tokens from the Twitter Dev Console 
         a = open("twitter_credentials.txt", "r")
         lines = a.readlines()
@@ -34,17 +30,11 @@ class TwitterClient(object):
             print("Error: Authentication Failed") 
   
     def clean_tweet(self, tweet): 
-        ''' 
-        Utility function to clean tweet text by removing links, special characters 
-        using simple regex statements. 
-        '''
+      
         return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])(\w+:\/\/\S+)", " ", tweet).split()) 
   
-    def get_tweet_sentiment(self, tweet): 
-        ''' 
-        Utility function to classify sentiment of passed tweet 
-        using textblob's sentiment method 
-        '''
+    def get_tweet_sentiment(self, tweet):
+      
         # create TextBlob object of passed tweet text 
         analysis = TextBlob(self.clean_tweet(tweet)) 
         # set sentiment 
@@ -56,9 +46,6 @@ class TwitterClient(object):
             return 'negative'
   
     def get_tweets(self, query, count = 10): 
-        ''' 
-        Main function to fetch tweets and parse them. 
-        '''
         # empty list to store parsed tweets 
         tweets = [] 
   
